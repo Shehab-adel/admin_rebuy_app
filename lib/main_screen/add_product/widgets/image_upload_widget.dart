@@ -1,9 +1,7 @@
 import 'package:admin_rebuy_app/main_screen/add_product/cubit/add_product_cubit.dart';
 import 'package:admin_rebuy_app/main_screen/add_product/cubit/add_product_states.dart';
 import 'package:admin_rebuy_app/utils/app_decoration.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
