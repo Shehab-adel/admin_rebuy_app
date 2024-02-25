@@ -5,6 +5,8 @@ import 'package:admin_rebuy_app/widgets/custom_text_formfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../widgets/custom_elevated_button.dart';
+
 class AddProductScreen extends StatelessWidget {
   const AddProductScreen({super.key});
 
@@ -59,6 +61,7 @@ class AddProductScreen extends StatelessWidget {
               child: CustomTextFormField(
                 height: 70,
                 width: 20,
+                textInputType: TextInputType.number,
                 hintText: 'Price LE',
                 hintStyle: CustomTextStyle.textStyle18,
                 textStyle: CustomTextStyle.textStyle18,
@@ -68,11 +71,22 @@ class AddProductScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: CustomTextFormField(
-                height: 70,
-                hintText: 'Discount LE',
-                hintStyle: CustomTextStyle.textStyle18,
-                textStyle: CustomTextStyle.textStyle18,
-              ),
+                  height: 70,
+                  hintText: 'Discount LE',
+                  textInputType: TextInputType.number,
+                  hintStyle: CustomTextStyle.textStyle18,
+                  textStyle: CustomTextStyle.textStyle18),
+            ),
+            const SizedBox(height: 27),
+            CustomElevatedButton(
+              text: 'Save',
+              onPressed: () async {},
+              height: 7.h,
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue)),
+              decoration: BoxDecoration(shape: BoxShape.rectangle),
+              textStyle: CustomTextStyle.textStyle18
+                  .copyWith(color: CustomColor.balckcolor),
             ),
           ],
         ),
