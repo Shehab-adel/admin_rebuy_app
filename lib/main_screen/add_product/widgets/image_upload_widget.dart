@@ -15,15 +15,15 @@ class ImageUploadWidget extends StatelessWidget {
     AddProductCubit addProductCubit = AddProductCubit.get(context);
     return BlocBuilder<AddProductCubit, AddProductState>(
         builder: (context, state) {
-      return Stack(
-        fit: StackFit.passthrough,
+      return Column(
         children: [
           GestureDetector(
             onTap: () {
-              addProductCubit.pickImage();
+              addProductCubit.pickGallaryImage();
             },
             child: Container(
                 height: 35.h,
+                width: 70.w,
                 margin: EdgeInsets.symmetric(horizontal: 15.w),
                 decoration: AppDecoration.outlineWhite,
                 child: addProductCubit.file == null
@@ -36,17 +36,17 @@ class ImageUploadWidget extends StatelessWidget {
                         fit: BoxFit.fill,
                       )),
           ),
-          Positioned(
-              top: 24.h,
-              left: 60.w,
-              child: SizedBox(
-                width: 25.w,
-                height: 13.h,
-                child: Icon(
-                  Icons.camera_alt,
-                  color: CustomColor.green,
-                  size: 30.sp,
-                ),
+          const SizedBox(
+            height: 27,
+          ),
+          IconButton(
+              onPressed: () {
+                addProductCubit.pickCameraImage();
+              },
+              icon: Icon(
+                Icons.camera_alt,
+                color: CustomColor.whitecolor,
+                size: 30.sp,
               ))
         ],
       );

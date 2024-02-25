@@ -10,8 +10,19 @@ class AddProductCubit extends Cubit<AddProductState> {
 
   static AddProductCubit get(BuildContext context) => BlocProvider.of(context);
   File? file;
-  Future<void> pickImage() async {
+  Future<void> pickGallaryImage() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      file = File(image.path);
+      emit(SuccessfulPickImage());
+    } else {
+      emit(FailPickImage());
+      return;
+    }
+  }
+
+  Future<void> pickCameraImage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image != null) {
       file = File(image.path);
       emit(SuccessfulPickImage());
