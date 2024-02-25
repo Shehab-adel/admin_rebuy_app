@@ -1,3 +1,5 @@
+import 'package:admin_rebuy_app/utils/app_decoration.dart';
+import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:flutter/material.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -6,20 +8,34 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, // Number of columns
+        crossAxisCount: 2,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
       ),
-      itemCount: 10, // Number of items
+      itemCount: categoryList.length, // Number of items
       itemBuilder: (context, index) {
         return Container(
-          color: Colors.amber, // Customize the item appearance
+          decoration: BoxDecoration(
+              color: Colors.grey.shade300,
+              borderRadius: BorderRadiusStyle
+                  .roundedBorder5), // Customize the item appearance
           alignment: Alignment.center,
-          child: Text('Item $index'),
+          child: Text(categoryList[index], style: CustomTextStyle.textStyle20),
         );
       },
     );
   }
+
+  static const List<String> categoryList = [
+    'Men Shirt',
+    'Office Bage',
+    'Dress',
+    'Women Bag',
+    'Pants',
+    'skirt',
+    'Bag',
+    'Heels',
+    'Bikini'
+  ];
 }
