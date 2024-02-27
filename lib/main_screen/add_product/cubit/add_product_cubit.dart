@@ -6,6 +6,7 @@ import 'package:admin_rebuy_app/main_screen/add_product/cubit/add_product_states
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class AddProductCubit extends Cubit<AddProductState> {
   AddProductCubit() : super(AddProductIntialState());
@@ -21,6 +22,7 @@ class AddProductCubit extends Cubit<AddProductState> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String? failCollectionMessage;
   Future<void> createAllProductsFirestoreCollection() async {
+    emit(LoadingAddProductsCollection());
     final CollectionReference result =
         FirebaseFirestore.instance.collection(AppStrings.allProducts);
     await result
@@ -35,12 +37,13 @@ class AddProductCubit extends Cubit<AddProductState> {
 
   String? failInnerCollectionMessage;
   Future<void> createInnerCollection() async {
+    emit(LoadingInnerCollection());
     FirebaseFirestore.instance
         .collection(AppStrings.allProducts)
         .doc(selectedCollection)
         .collection(AppStrings.products)
         .add({
-      AppStrings.image: '',
+      AppStrings.image: file!.path,
       AppStrings.title: titleTextEdController.text,
       AppStrings.description: descriptionTextEdController.text,
       AppStrings.price: priceTextEdController.text,
@@ -51,6 +54,7 @@ class AddProductCubit extends Cubit<AddProductState> {
       failCollectionMessage = error.toString();
       emit(FailInnerCollection());
     });
+    file = null;
     titleTextEdController.clear();
     descriptionTextEdController.clear();
     priceTextEdController.clear();
@@ -62,23 +66,43 @@ class AddProductCubit extends Cubit<AddProductState> {
     emit(SelectedCollection());
   }
 
-  void loginshowDialog(BuildContext context, String title, String content) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(title, style: CustomTextStyle.textStyle18),
-          content: Text(content, style: CustomTextStyle.textStyle16),
-          actions: <Widget>[
-            TextButton(
-                child: Text('Close', style: CustomTextStyle.textStyle18),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                }),
-          ],
-        );
-      },
-    );
+  void uploadImage() {
+// Create the file metadata
+    final metadata = SettableMetadata(contentType: "image/jpeg");
+
+// Create a reference to the Firebase Storage bucket
+    final storageRef = FirebaseStorage.instance.ref();
+
+// Upload file and metadata to the path
+    final uploadTask = storageRef.child(file!.path).putFile(file!, metadata);
+
+// Listen for state changes, errors, and completion of the upload.
+    uploadTask.snapshotEvents.listen((TaskSnapshot taskSnapshot) {
+      switch (taskSnapshot.state) {
+        case TaskState.running:
+          final progress =
+              100.0 * (taskSnapshot.bytesTransferred / taskSnapshot.totalBytes);
+          print("Upload is $progress% complete. ***************");
+          emit(UploadIamgeRunning());
+          break;
+        case TaskState.paused:
+          print("Upload is paused.**********");
+          emit(UploadIamgePaused());
+          break;
+        case TaskState.canceled:
+          print("Upload was canceled ******");
+          emit(UploadIamgeCanceled());
+          break;
+        case TaskState.error:
+          print("Upload is error **********");
+          emit(UploadIamgeError());
+          break;
+        case TaskState.success:
+          print("Upload is success **********");
+          emit(UploadIamgeSuccess());
+          break;
+      }
+    });
   }
 
   Future<void> pickGallaryImage() async {
@@ -101,5 +125,24 @@ class AddProductCubit extends Cubit<AddProductState> {
       emit(FailPickImage());
       return;
     }
+  }
+
+  void loginshowDialog(BuildContext context, String title, String content) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title, style: CustomTextStyle.textStyle18),
+          content: Text(content, style: CustomTextStyle.textStyle16),
+          actions: <Widget>[
+            TextButton(
+                child: Text('Close', style: CustomTextStyle.textStyle18),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }),
+          ],
+        );
+      },
+    );
   }
 }

@@ -7,7 +7,6 @@ import 'package:admin_rebuy_app/widgets/custom_text_formfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../widgets/custom_elevated_button.dart';
 
 class AddProductScreen extends StatelessWidget {
@@ -120,6 +119,7 @@ class AddProductScreen extends StatelessWidget {
                 listener: (context, state) {
                   if (state is SuccessfulAddProductsCollection) {
                     AddProductCubit.get(context).createInnerCollection();
+                    addProductCubit.uploadImage();
                     addProductCubit.loginshowDialog(context, 'Sucessfully',
                         'You already added a new product');
                   } else if (state is FailAddProductsCollection) {
@@ -131,22 +131,27 @@ class AddProductScreen extends StatelessWidget {
                   }
                 },
                 builder: (context, state) {
-                  return CustomElevatedButton(
-                    text: 'Save',
-                    onPressed: () async {
-                      if (addProductCubit.formKey.currentState!.validate() ==
-                          true) {
-                        await AddProductCubit.get(context)
-                            .createAllProductsFirestoreCollection();
-                      }
-                    },
-                    height: 7.h,
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.blue)),
-                    textStyle: CustomTextStyle.textStyle18
-                        .copyWith(color: CustomColor.balckcolor),
-                  );
+                  return state is LoadingAddProductsCollection ||
+                          state is LoadingInnerCollection
+                      ? const Center(
+                          child: CircularProgressIndicator(color: Colors.blue))
+                      : CustomElevatedButton(
+                          text: 'Save',
+                          onPressed: () async {
+                            if (addProductCubit.formKey.currentState!
+                                    .validate() ==
+                                true) {
+                              await AddProductCubit.get(context)
+                                  .createAllProductsFirestoreCollection();
+                            }
+                          },
+                          height: 7.h,
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(Colors.blue)),
+                          textStyle: CustomTextStyle.textStyle18
+                              .copyWith(color: CustomColor.balckcolor),
+                        );
                 },
               )
             ],
