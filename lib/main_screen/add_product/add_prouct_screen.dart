@@ -84,7 +84,6 @@ class AddProductScreen extends StatelessWidget {
               height: 7.h,
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue)),
-              decoration: BoxDecoration(shape: BoxShape.rectangle),
               textStyle: CustomTextStyle.textStyle18
                   .copyWith(color: CustomColor.balckcolor),
             ),

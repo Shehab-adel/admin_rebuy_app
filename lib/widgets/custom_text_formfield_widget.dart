@@ -1,6 +1,5 @@
 import 'package:admin_rebuy_app/utils/app_decoration.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(

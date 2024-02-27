@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1098117801309-p7b5buq33cpotar5tnvlegbfnkpj2jpe.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1098117801309-p7b5buq33cpotar5tnvlegbfnkpj2jpe</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1098117801309-a1hn047ud7urlh1hiobg0d0vjjm99n07.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBtN5K50LlrEgOwCgO1sIwAF6e0HQfOp98</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1098117801309</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.adminRebuyApp.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>rebuy-3702d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>rebuy-3702d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1098117801309:ios:3656aa7593bc70571034b4</string>
+</dict>
+</plist>
