@@ -1,3 +1,5 @@
+import 'package:admin_rebuy_app/core/app_strings.dart';
+import 'package:admin_rebuy_app/main_screen/add_product/cubit/add_product_cubit.dart';
 import 'package:admin_rebuy_app/routes/app_routes.dart';
 import 'package:admin_rebuy_app/utils/app_decoration.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
@@ -18,6 +20,7 @@ class CategoryScreen extends StatelessWidget {
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
+            AddProductCubit.get(context).currentCollection(categoryList[index]);
             Navigator.pushNamed(context, AppRoutes.addProduct);
           },
           child: Container(
@@ -35,14 +38,14 @@ class CategoryScreen extends StatelessWidget {
   }
 
   static const List<String> categoryList = [
-    'Men Shirt',
-    'Office Bage',
-    'Dress',
-    'Women Bag',
-    'Pants',
-    'skirt',
-    'Bag',
-    'Heels',
-    'Bikini'
+    AppStrings.menShirt,
+    AppStrings.officeBage,
+    AppStrings.dress,
+    AppStrings.womenBag,
+    AppStrings.pants,
+    AppStrings.skirt,
+    AppStrings.bag,
+    AppStrings.heels,
+    AppStrings.bikini
   ];
 }

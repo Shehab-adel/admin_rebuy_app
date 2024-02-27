@@ -18,4 +18,10 @@ class CustomTextStyle {
         fontSize: 18,
         fontWeight: FontWeight.w500,
       );
+  static TextStyle get textStyle16 => const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      );
+  static TextStyle get textStyle17 => const TextStyle(
+      fontSize: 17, fontWeight: FontWeight.w400, color: Colors.blueAccent);
 }
