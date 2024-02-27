@@ -40,11 +40,11 @@ class AddProductCubit extends Cubit<AddProductState> {
         .doc(selectedCollection)
         .collection(AppStrings.products)
         .add({
-      'image': '',
-      'title': titleTextEdController.text,
-      'description': descriptionTextEdController.text,
-      'price': priceTextEdController.text,
-      'discount': discountTextEdController.text,
+      AppStrings.image: '',
+      AppStrings.title: titleTextEdController.text,
+      AppStrings.description: descriptionTextEdController.text,
+      AppStrings.price: priceTextEdController.text,
+      AppStrings.discount: discountTextEdController.text,
     }).then((value) {
       emit(SuccessfulInnerCollection());
     }).onError((error, stackTrace) {

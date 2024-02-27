@@ -10,4 +10,9 @@ class AppStrings {
   static const String heels = 'Heels';
   static const String bikini = 'Bikini';
   static const String products = 'Products';
+  static const String image = 'image';
+  static const String title = 'title';
+  static const String description = 'description';
+  static const String price = 'price';
+  static const String discount = 'discount';
 }
