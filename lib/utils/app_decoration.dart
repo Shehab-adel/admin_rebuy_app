@@ -26,4 +26,5 @@ class BorderRadiusStyle {
 class CustomColor {
   static Color get whitecolor => Colors.white;
   static Color get balckcolor => Colors.black;
+  static Color get redcolor => Colors.red;
 }

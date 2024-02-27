@@ -1,5 +1,6 @@
 import 'package:admin_rebuy_app/utils/app_decoration.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
@@ -92,6 +93,9 @@ class CustomTextFormField extends StatelessWidget {
           maxLines: maxLines ?? 1,
           decoration: decoration,
           validator: validator,
+          cursorColor: CustomColor.balckcolor,
+          cursorErrorColor: CustomColor.redcolor,
+          cursorHeight: 3.h,
         ),
       );
   InputDecoration get decoration => InputDecoration(
@@ -99,6 +103,7 @@ class CustomTextFormField extends StatelessWidget {
         hintStyle: hintStyle,
         prefixIcon: prefix,
         suffixIcon: suffix,
+        errorMaxLines: 2,
         suffixIconConstraints: suffixConstraints,
         contentPadding: contentPadding ??
             const EdgeInsets.only(top: 30, right: 30, bottom: 15, left: 30),

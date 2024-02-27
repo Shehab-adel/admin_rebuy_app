@@ -18,7 +18,8 @@ class AddProductCubit extends Cubit<AddProductState> {
   TextEditingController descriptionTextEdController = TextEditingController();
   TextEditingController priceTextEdController = TextEditingController();
   TextEditingController discountTextEdController = TextEditingController();
-
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String? failCollectionMessage;
   Future<void> createAllProductsFirestoreCollection() async {
     final CollectionReference result =
         FirebaseFirestore.instance.collection(AppStrings.allProducts);
@@ -27,10 +28,12 @@ class AddProductCubit extends Cubit<AddProductState> {
         .set({'Type': selectedCollection}).then((value) {
       emit(SuccessfulAddProductsCollection());
     }).onError((error, stackTrace) {
+      failCollectionMessage = error.toString();
       emit(FailAddProductsCollection());
     });
   }
 
+  String? failInnerCollectionMessage;
   Future<void> createInnerCollection() async {
     FirebaseFirestore.instance
         .collection(AppStrings.allProducts)
@@ -45,6 +48,7 @@ class AddProductCubit extends Cubit<AddProductState> {
     }).then((value) {
       emit(SuccessfulInnerCollection());
     }).onError((error, stackTrace) {
+      failCollectionMessage = error.toString();
       emit(FailInnerCollection());
     });
     titleTextEdController.clear();

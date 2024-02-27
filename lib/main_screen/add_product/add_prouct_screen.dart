@@ -26,90 +26,131 @@ class AddProductScreen extends StatelessWidget {
               Icons.arrow_back,
               color: CustomColor.whitecolor,
             )),
-        title: Text('Adding Product',
+        title: Text(addProductCubit.selectedCollection,
             style: CustomTextStyle.textStyle18
                 .copyWith(color: CustomColor.whitecolor)),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(vertical: 7.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const ImageUploadWidget(),
-            const SizedBox(height: 27),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: CustomTextFormField(
-                controller: addProductCubit.titleTextEdController,
-                height: 70,
-                width: 20,
-                hintText: 'Title',
-                hintStyle: CustomTextStyle.textStyle18,
-                textStyle: CustomTextStyle.textStyle18,
+        child: Form(
+          key: addProductCubit.formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const ImageUploadWidget(),
+              SizedBox(height: 5.h),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: CustomTextFormField(
+                  controller: addProductCubit.titleTextEdController,
+                  height: 12.h,
+                  hintText: 'Title',
+                  hintStyle: CustomTextStyle.textStyle18,
+                  textStyle: CustomTextStyle.textStyle18,
+                  maxLines: 2,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please add a product title';
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
               ),
-            ),
-            const SizedBox(height: 27),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: CustomTextFormField(
-                controller: addProductCubit.descriptionTextEdController,
-                height: 40.h,
-                maxLines: 100,
-                hintText: 'Description',
-                hintStyle: CustomTextStyle.textStyle18,
-                textStyle: CustomTextStyle.textStyle18,
+              SizedBox(height: 5.h),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: CustomTextFormField(
+                  controller: addProductCubit.descriptionTextEdController,
+                  height: 40.h,
+                  maxLines: 100,
+                  hintText: 'Description',
+                  hintStyle: CustomTextStyle.textStyle18,
+                  textStyle: CustomTextStyle.textStyle18,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please add a product description';
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
               ),
-            ),
-            const SizedBox(height: 27),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.w),
-              child: CustomTextFormField(
-                controller: addProductCubit.priceTextEdController,
-                height: 70,
-                width: 20,
-                textInputType: TextInputType.number,
-                hintText: 'Price LE',
-                hintStyle: CustomTextStyle.textStyle18,
-                textStyle: CustomTextStyle.textStyle18,
+              SizedBox(height: 5.h),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: CustomTextFormField(
+                  controller: addProductCubit.priceTextEdController,
+                  height: 10.h,
+                  textInputType: TextInputType.number,
+                  hintText: 'Price LE',
+                  hintStyle: CustomTextStyle.textStyle18,
+                  textStyle: CustomTextStyle.textStyle18,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please add a product price';
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
               ),
-            ),
-            const SizedBox(height: 27),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.w),
-              child: CustomTextFormField(
+              SizedBox(height: 5.h),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: CustomTextFormField(
                   controller: addProductCubit.discountTextEdController,
-                  height: 70,
+                  height: 10.h,
                   hintText: 'Discount LE',
                   textInputType: TextInputType.number,
                   hintStyle: CustomTextStyle.textStyle18,
-                  textStyle: CustomTextStyle.textStyle18),
-            ),
-            const SizedBox(height: 27),
-            BlocConsumer<AddProductCubit, AddProductState>(
-              listener: (context, state) async {
-                if (state is SuccessfulAddProductsCollection) {
-                  await AddProductCubit.get(context).createInnerCollection();
-                  addProductCubit.loginshowDialog(context, 'Sucessfully',
-                      'You already added a new product');
-                }
-              },
-              builder: (context, state) {
-                return CustomElevatedButton(
-                  text: 'Save',
-                  onPressed: () async {
-                    AddProductCubit.get(context)
-                        .createAllProductsFirestoreCollection();
+                  textStyle: CustomTextStyle.textStyle18,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please add a product discount';
+                    } else {
+                      return null;
+                    }
                   },
-                  height: 7.h,
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.blue)),
-                  textStyle: CustomTextStyle.textStyle18
-                      .copyWith(color: CustomColor.balckcolor),
-                );
-              },
-            )
-          ],
+                ),
+              ),
+              SizedBox(height: 5.h),
+              BlocConsumer<AddProductCubit, AddProductState>(
+                listener: (context, state) {
+                  if (state is SuccessfulAddProductsCollection) {
+                    AddProductCubit.get(context).createInnerCollection();
+                    addProductCubit.loginshowDialog(context, 'Sucessfully',
+                        'You already added a new product');
+                  } else if (state is FailAddProductsCollection) {
+                    addProductCubit.loginshowDialog(
+                        context,
+                        'Fail',
+                        addProductCubit.failCollectionMessage ??
+                            'Failed to add the product,try later');
+                  }
+                },
+                builder: (context, state) {
+                  return CustomElevatedButton(
+                    text: 'Save',
+                    onPressed: () async {
+                      if (addProductCubit.formKey.currentState!.validate() ==
+                          true) {
+                        await AddProductCubit.get(context)
+                            .createAllProductsFirestoreCollection();
+                      }
+                    },
+                    height: 7.h,
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.blue)),
+                    textStyle: CustomTextStyle.textStyle18
+                        .copyWith(color: CustomColor.balckcolor),
+                  );
+                },
+              )
+            ],
+          ),
         ),
       ),
     );
