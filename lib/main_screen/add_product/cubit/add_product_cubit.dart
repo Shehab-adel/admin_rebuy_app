@@ -110,7 +110,7 @@ class AddProductCubit extends Cubit<AddProductState> {
 
       List<Object?> productList =
           querySnapshot.docs.map((doc) => doc.data()).toList();
-      // print("$productList *********************");
+      print("$productList *********************");
     } catch (e) {
       // print('Error fetching products: $e');
       // Return an empty list or handle the error as needed
