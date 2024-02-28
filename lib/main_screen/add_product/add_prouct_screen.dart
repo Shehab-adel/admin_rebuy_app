@@ -117,22 +117,18 @@ class AddProductScreen extends StatelessWidget {
               SizedBox(height: 5.h),
               BlocConsumer<AddProductCubit, AddProductState>(
                 listener: (context, state) {
-                  if (state is SuccessfulAddProductsCollection) {
-                    AddProductCubit.get(context).createInnerCollection();
+                  if (state is SuccessfulAddProductCollection) {
                     addProductCubit.loginshowDialog(context, 'Sucessfully',
                         'You already added a new product');
-                    addProductCubit.uploadImage();
-                  } else if (state is FailAddProductsCollection) {
+                  } else if (state is FailAddProductCollection) {
                     addProductCubit.loginshowDialog(
-                        context,
-                        'Fail',
-                        addProductCubit.failCollectionMessage ??
-                            'Failed to add the product,try later');
+                        context, 'Fail', addProductCubit.failCollectionMessage);
                   }
                 },
                 builder: (context, state) {
-                  return state is LoadingAddProductsCollection ||
-                          state is LoadingInnerCollection
+                  print("$state ***************");
+                  return state is LoadingAddProductCollection ||
+                          state is UploadIamgeRunning
                       ? const Center(
                           child: CircularProgressIndicator(color: Colors.blue))
                       : CustomElevatedButton(
@@ -141,8 +137,9 @@ class AddProductScreen extends StatelessWidget {
                             if (addProductCubit.formKey.currentState!
                                     .validate() ==
                                 true) {
+                              addProductCubit.uploadImage();
                               await AddProductCubit.get(context)
-                                  .createAllProductsFirestoreCollection();
+                                  .createFirestoreCollection();
                             }
                           },
                           height: 7.h,

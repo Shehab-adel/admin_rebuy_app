@@ -6,17 +6,11 @@ class SuccessfulPickImage extends AddProductState {}
 
 class FailPickImage extends AddProductState {}
 
-class SuccessfulAddProductsCollection extends AddProductState {}
+class SuccessfulAddProductCollection extends AddProductState {}
 
-class LoadingAddProductsCollection extends AddProductState {}
+class LoadingAddProductCollection extends AddProductState {}
 
-class FailAddProductsCollection extends AddProductState {}
-
-class LoadingInnerCollection extends AddProductState {}
-
-class SuccessfulInnerCollection extends AddProductState {}
-
-class FailInnerCollection extends AddProductState {}
+class FailAddProductCollection extends AddProductState {}
 
 class SelectedCollection extends AddProductState {}
 

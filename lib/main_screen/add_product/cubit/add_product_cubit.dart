@@ -20,39 +20,20 @@ class AddProductCubit extends Cubit<AddProductState> {
   TextEditingController priceTextEdController = TextEditingController();
   TextEditingController discountTextEdController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String? failCollectionMessage;
-  Future<void> createAllProductsFirestoreCollection() async {
-    emit(LoadingAddProductsCollection());
-    final CollectionReference result =
-        FirebaseFirestore.instance.collection(AppStrings.allProducts);
-    await result
-        .doc(selectedCollection)
-        .set({'Type': selectedCollection}).then((value) {
-      emit(SuccessfulAddProductsCollection());
-    }).onError((error, stackTrace) {
-      failCollectionMessage = error.toString();
-      emit(FailAddProductsCollection());
-    });
-  }
-
-  String? failInnerCollectionMessage;
-  Future<void> createInnerCollection() async {
-    emit(LoadingInnerCollection());
-    FirebaseFirestore.instance
-        .collection(AppStrings.allProducts)
-        .doc(selectedCollection)
-        .collection(AppStrings.products)
-        .add({
+  String failCollectionMessage = 'Failed to add the product,try later';
+  Future<void> createFirestoreCollection() async {
+    emit(LoadingAddProductCollection());
+    await FirebaseFirestore.instance.collection(selectedCollection).add({
       AppStrings.image: file!.path,
       AppStrings.title: titleTextEdController.text,
       AppStrings.description: descriptionTextEdController.text,
       AppStrings.price: priceTextEdController.text,
       AppStrings.discount: discountTextEdController.text,
     }).then((value) {
-      emit(SuccessfulInnerCollection());
+      emit(SuccessfulAddProductCollection());
     }).onError((error, stackTrace) {
       failCollectionMessage = error.toString();
-      emit(FailInnerCollection());
+      emit(FailAddProductCollection());
     });
     file = null;
     titleTextEdController.clear();
@@ -61,7 +42,7 @@ class AddProductCubit extends Cubit<AddProductState> {
     discountTextEdController.clear();
   }
 
-  currentCollection(selectedCollection) {
+  currentCollection(String selectedCollection) {
     this.selectedCollection = selectedCollection;
     emit(SelectedCollection());
   }
@@ -117,6 +98,22 @@ class AddProductCubit extends Cubit<AddProductState> {
     } else {
       emit(FailPickImage());
       return;
+    }
+  }
+
+  Future<void> fetchProducts() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection(selectedCollection)
+          .limit(1)
+          .get();
+
+      List<Object?> productList =
+          querySnapshot.docs.map((doc) => doc.data()).toList();
+      // print("$productList *********************");
+    } catch (e) {
+      // print('Error fetching products: $e');
+      // Return an empty list or handle the error as needed
     }
   }
 

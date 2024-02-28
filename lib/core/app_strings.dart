@@ -1,5 +1,4 @@
 class AppStrings {
-  static const String allProducts = 'all_products';
   static const String menShirt = 'Men Shirts';
   static const String officeBage = 'Office Bage';
   static const String dress = 'Dress';
