@@ -21,4 +21,11 @@ class HomeCubit extends Cubit<HomeState> {
     AppStrings.flashSale,
     AppStrings.megaSale
   ];
+
+  int selectedCategory = 0;
+
+  void selectedCategoryColor(int index) {
+    selectedCategory = index;
+    emit(SelectedCategory());
+  }
 }
