@@ -25,7 +25,10 @@ class CategoryScreen extends StatelessWidget {
           },
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.grey.shade300,
+                color: index == categoryList.length - 1 ||
+                        index == categoryList.length - 2
+                    ? Colors.red
+                    : Colors.grey.shade300,
                 borderRadius: BorderRadiusStyle
                     .roundedBorder5), // Customize the item appearance
             alignment: Alignment.center,
@@ -46,6 +49,8 @@ class CategoryScreen extends StatelessWidget {
     AppStrings.skirt,
     AppStrings.bag,
     AppStrings.heels,
-    AppStrings.bikini
+    AppStrings.bikini,
+    AppStrings.flashSale,
+    AppStrings.megaSale
   ];
 }

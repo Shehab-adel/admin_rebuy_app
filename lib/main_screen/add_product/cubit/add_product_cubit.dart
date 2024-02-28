@@ -80,25 +80,18 @@ class AddProductCubit extends Cubit<AddProductState> {
     uploadTask.snapshotEvents.listen((TaskSnapshot taskSnapshot) {
       switch (taskSnapshot.state) {
         case TaskState.running:
-          final progress =
-              100.0 * (taskSnapshot.bytesTransferred / taskSnapshot.totalBytes);
-          print("Upload is $progress% complete. ***************");
           emit(UploadIamgeRunning());
           break;
         case TaskState.paused:
-          print("Upload is paused.**********");
           emit(UploadIamgePaused());
           break;
         case TaskState.canceled:
-          print("Upload was canceled ******");
           emit(UploadIamgeCanceled());
           break;
         case TaskState.error:
-          print("Upload is error **********");
           emit(UploadIamgeError());
           break;
         case TaskState.success:
-          print("Upload is success **********");
           emit(UploadIamgeSuccess());
           break;
       }

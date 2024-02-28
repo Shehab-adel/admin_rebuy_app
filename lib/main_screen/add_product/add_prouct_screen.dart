@@ -119,9 +119,9 @@ class AddProductScreen extends StatelessWidget {
                 listener: (context, state) {
                   if (state is SuccessfulAddProductsCollection) {
                     AddProductCubit.get(context).createInnerCollection();
-                    addProductCubit.uploadImage();
                     addProductCubit.loginshowDialog(context, 'Sucessfully',
                         'You already added a new product');
+                    addProductCubit.uploadImage();
                   } else if (state is FailAddProductsCollection) {
                     addProductCubit.loginshowDialog(
                         context,

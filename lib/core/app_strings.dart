@@ -15,4 +15,6 @@ class AppStrings {
   static const String description = 'description';
   static const String price = 'price';
   static const String discount = 'discount';
+  static const String flashSale = 'FlashSale';
+  static const String megaSale = 'MegaSale';
 }
