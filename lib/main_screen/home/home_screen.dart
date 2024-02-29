@@ -4,7 +4,6 @@ import 'package:admin_rebuy_app/main_screen/home/widgets/category_details_widget
 import 'package:admin_rebuy_app/utils/app_decoration.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
@@ -13,13 +12,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeCubit homeCubit = HomeCubit.get(context);
-    return BlocConsumer<HomeCubit, HomeState>(
-      listener: (context, state) {},
+    return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              height: 20.h,
+              height: 10.h,
               margin: EdgeInsets.only(left: 1.w, right: 1.w, top: 8.h),
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
@@ -27,6 +26,7 @@ class HomeScreen extends StatelessWidget {
                     return GestureDetector(
                       onTap: () {
                         homeCubit.selectedCategoryColor(index);
+                        homeCubit.fetchDataFromFirestore();
                       },
                       child: Container(
                         width: 40.w,
@@ -53,7 +53,8 @@ class HomeScreen extends StatelessWidget {
               thickness: 2,
               color: Colors.white,
             ),
-            const SingleChildScrollView(child: CategoryDetailsWidget())
+            const CategoryDetailsWidget(),
+            SizedBox(height: 1.h),
           ],
         );
       },

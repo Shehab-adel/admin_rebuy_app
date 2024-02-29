@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:admin_rebuy_app/core/app_strings.dart';
 import 'package:admin_rebuy_app/main_screen/home/cubit/home_sate.dart';
 import 'package:admin_rebuy_app/main_screen/home/models/data_model.dart';
@@ -36,12 +35,13 @@ class HomeCubit extends Cubit<HomeState> {
 
   String? message;
   List<DataModel>? dataList;
-  void fetchDataFromFirestore() async {
+  Future<void> fetchDataFromFirestore() async {
     try {
       emit(LoadingFetchCollection());
       final querySnapshot = await FirebaseFirestore.instance
-          .collection(AppStrings.menShirt)
+          .collection(categoryList[selectedCategory])
           .get();
+
       dataList = await Future.wait(querySnapshot.docs.map((doc) async {
         final data = doc.data();
         final file = data['image'];
@@ -56,7 +56,6 @@ class HomeCubit extends Cubit<HomeState> {
         );
       }).toList());
       emit(SuccessfulFetchCollection());
-      print('${dataList?[1].image ?? ''}**********************');
     } on FirebaseException catch (error) {
       message = error.toString();
       emit(FailFetchCollection());
