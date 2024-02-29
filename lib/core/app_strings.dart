@@ -13,7 +13,7 @@ class AppStrings {
   static const String title = 'title';
   static const String description = 'description';
   static const String price = 'price';
-  static const String discount = 'discount';
+  static const String oldPrice = 'old_price';
   static const String flashSale = 'FlashSale';
   static const String megaSale = 'MegaSale';
 }

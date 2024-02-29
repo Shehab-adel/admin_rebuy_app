@@ -18,7 +18,7 @@ class AddProductCubit extends Cubit<AddProductState> {
   TextEditingController titleTextEdController = TextEditingController();
   TextEditingController descriptionTextEdController = TextEditingController();
   TextEditingController priceTextEdController = TextEditingController();
-  TextEditingController discountTextEdController = TextEditingController();
+  TextEditingController oldPriceTextEdController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String failCollectionMessage = 'Failed to add the product,try later';
   Future<void> createFirestoreCollection() async {
@@ -28,7 +28,7 @@ class AddProductCubit extends Cubit<AddProductState> {
       AppStrings.title: titleTextEdController.text,
       AppStrings.description: descriptionTextEdController.text,
       AppStrings.price: priceTextEdController.text,
-      AppStrings.discount: discountTextEdController.text,
+      AppStrings.oldPrice: oldPriceTextEdController.text,
     }).then((value) {
       emit(SuccessfulAddProductCollection());
     }).onError((error, stackTrace) {
@@ -39,7 +39,7 @@ class AddProductCubit extends Cubit<AddProductState> {
     titleTextEdController.clear();
     descriptionTextEdController.clear();
     priceTextEdController.clear();
-    discountTextEdController.clear();
+    oldPriceTextEdController.clear();
   }
 
   currentCollection(String selectedCollection) {
@@ -47,7 +47,7 @@ class AddProductCubit extends Cubit<AddProductState> {
     emit(SelectedCollection());
   }
 
-  void uploadImage() {
+  void uploadImage() async {
 // Create the file metadata
     final metadata = SettableMetadata(contentType: "image/jpeg");
 
@@ -56,7 +56,6 @@ class AddProductCubit extends Cubit<AddProductState> {
 
 // Upload file and metadata to the path
     final uploadTask = storageRef.child(file!.path).putFile(file!, metadata);
-
 // Listen for state changes, errors, and completion of the upload.
     uploadTask.snapshotEvents.listen((TaskSnapshot taskSnapshot) {
       switch (taskSnapshot.state) {
@@ -98,22 +97,6 @@ class AddProductCubit extends Cubit<AddProductState> {
     } else {
       emit(FailPickImage());
       return;
-    }
-  }
-
-  Future<void> fetchProducts() async {
-    try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection(selectedCollection)
-          .limit(1)
-          .get();
-
-      List<Object?> productList =
-          querySnapshot.docs.map((doc) => doc.data()).toList();
-      print("$productList *********************");
-    } catch (e) {
-      // print('Error fetching products: $e');
-      // Return an empty list or handle the error as needed
     }
   }
 

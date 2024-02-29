@@ -99,15 +99,15 @@ class AddProductScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: CustomTextFormField(
-                  controller: addProductCubit.discountTextEdController,
+                  controller: addProductCubit.oldPriceTextEdController,
                   height: 10.h,
-                  hintText: 'Discount LE',
+                  hintText: 'Old Price LE',
                   textInputType: TextInputType.number,
                   hintStyle: CustomTextStyle.textStyle18,
                   textStyle: CustomTextStyle.textStyle18,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Please add a product discount';
+                      return 'Please add a old price product ';
                     } else {
                       return null;
                     }
