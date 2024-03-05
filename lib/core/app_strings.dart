@@ -16,4 +16,5 @@ class AppStrings {
   static const String oldPrice = 'old_price';
   static const String flashSale = 'FlashSale';
   static const String megaSale = 'MegaSale';
+  static const String disccountPrecentage = 'disccountPrecentage';
 }

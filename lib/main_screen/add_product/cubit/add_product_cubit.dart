@@ -23,12 +23,15 @@ class AddProductCubit extends Cubit<AddProductState> {
   String failCollectionMessage = 'Failed to add the product,try later';
   Future<void> createFirestoreCollection() async {
     emit(LoadingAddProductCollection());
+    double price = double.parse(priceTextEdController.text);
+    double oldPrice = double.parse(oldPriceTextEdController.text);
     await FirebaseFirestore.instance.collection(selectedCollection).add({
       AppStrings.image: file!.path,
       AppStrings.title: titleTextEdController.text,
       AppStrings.description: descriptionTextEdController.text,
-      AppStrings.price: priceTextEdController.text,
-      AppStrings.oldPrice: oldPriceTextEdController.text,
+      AppStrings.price: price,
+      AppStrings.oldPrice: oldPrice,
+      AppStrings.disccountPrecentage: {((oldPrice - price) / oldPrice) * 100}
     }).then((value) {
       emit(SuccessfulAddProductCollection());
     }).onError((error, stackTrace) {

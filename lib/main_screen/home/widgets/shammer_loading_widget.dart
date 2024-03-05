@@ -23,11 +23,11 @@ class ShimmerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shimmer(
         enabled: false,
-        period: Duration(seconds: 30),
+        period: const Duration(seconds: 30),
         gradient: _shimmerGradient,
         child: Container(
             height: 200,
             color: Colors.grey[300],
-            child: CategoryDetailsWidget()));
+            child: const CategoryDetailsWidget()));
   }
 }

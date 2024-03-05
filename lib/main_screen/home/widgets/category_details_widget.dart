@@ -84,15 +84,15 @@ class CategoryDetailsWidget extends StatelessWidget {
                                   maxLines: 3,
                                 ),
                                 SizedBox(height: 2.h),
-                                Text(homeCubit.dataList?[index].price ?? '0',
+                                Text(
+                                    "${homeCubit.dataList?[index].price ?? '0'}",
                                     style: CustomTextStyle.textStyle18
                                         .copyWith(color: Colors.blue)),
                                 SizedBox(height: 1.h),
                                 Row(
                                   children: [
                                     Text(
-                                      homeCubit.dataList?[index].oldPrice ??
-                                          '0',
+                                      "${homeCubit.dataList?[index].oldPrice ?? '0'}",
                                       style: CustomTextStyle.textStyle16
                                           .copyWith(
                                               decoration:
@@ -101,7 +101,7 @@ class CategoryDetailsWidget extends StatelessWidget {
                                     ),
                                     SizedBox(width: 16.w),
                                     Text(
-                                      "24% Off",
+                                      "${homeCubit.dataList?[index].disccountPrecentage ?? '0'}",
                                       style: CustomTextStyle.textStyle16
                                           .copyWith(color: Colors.red),
                                     ),

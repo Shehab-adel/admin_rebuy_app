@@ -59,11 +59,11 @@ class HomeCubit extends Cubit<HomeState> {
       print('Sucessful ---------------******');
     } on FirebaseException catch (error) {
       message = error.toString();
-      print('${message}  Fail ---------------******');
+      print('$message  Fail ---------------******');
       emit(FailFetchCollection());
     } catch (error) {
       message = error.toString();
-      print('${message}  Fail ---------------******');
+      print('$message  Fail ---------------******');
       emit(FailFetchCollection());
     }
   }
