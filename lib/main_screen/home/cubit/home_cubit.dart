@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:admin_rebuy_app/core/app_strings.dart';
 import 'package:admin_rebuy_app/main_screen/home/cubit/home_sate.dart';
 import 'package:admin_rebuy_app/main_screen/home/models/data_model.dart';
+import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -67,5 +68,24 @@ class HomeCubit extends Cubit<HomeState> {
       print('$message  Fail ---------------******');
       emit(FailFetchCollection());
     }
+  }
+
+  void loginshowDialog(BuildContext context, String title, String content) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title, style: CustomTextStyle.textStyle18),
+          content: Text(content, style: CustomTextStyle.textStyle16),
+          actions: <Widget>[
+            TextButton(
+                child: Text('Close', style: CustomTextStyle.textStyle18),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }),
+          ],
+        );
+      },
+    );
   }
 }
