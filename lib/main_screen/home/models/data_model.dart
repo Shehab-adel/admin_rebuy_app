@@ -4,7 +4,7 @@ class DataModel {
   String? description;
   double? price;
   double? oldPrice;
-  double? disccountPrecentage;
+  String? disccountPrecentage;
 
   DataModel(
       {this.image,

@@ -53,6 +53,7 @@ class HomeCubit extends Cubit<HomeState> {
           description: data['description'],
           price: data['price'],
           oldPrice: data['old_price'],
+          disccountPrecentage: data['disccountPrecentage'],
         );
       }).toList());
       emit(SuccessfulFetchCollection());

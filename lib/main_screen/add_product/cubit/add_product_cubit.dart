@@ -25,13 +25,15 @@ class AddProductCubit extends Cubit<AddProductState> {
     emit(LoadingAddProductCollection());
     double price = double.parse(priceTextEdController.text);
     double oldPrice = double.parse(oldPriceTextEdController.text);
+    String disccountPrecentage =
+        (((oldPrice - price) / oldPrice) * 100).toStringAsFixed(0);
     await FirebaseFirestore.instance.collection(selectedCollection).add({
       AppStrings.image: file!.path,
       AppStrings.title: titleTextEdController.text,
       AppStrings.description: descriptionTextEdController.text,
       AppStrings.price: price,
       AppStrings.oldPrice: oldPrice,
-      AppStrings.disccountPrecentage: {((oldPrice - price) / oldPrice) * 100}
+      AppStrings.disccountPrecentage: disccountPrecentage
     }).then((value) {
       emit(SuccessfulAddProductCollection());
     }).onError((error, stackTrace) {
