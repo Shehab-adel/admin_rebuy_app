@@ -4,7 +4,6 @@ import 'package:admin_rebuy_app/utils/app_decoration.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 class CategoryDetailsWidget extends StatelessWidget {
@@ -69,7 +68,8 @@ class CategoryDetailsWidget extends StatelessWidget {
                           SizedBox(height: 1.h),
                           Text(
                             homeCubit.dataList?[index].description ?? '0',
-                            style: CustomTextStyle.textStyle16,
+                            style: CustomTextStyle.textStyle16
+                                .copyWith(color: Colors.grey.shade500),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 3,
                           ),
