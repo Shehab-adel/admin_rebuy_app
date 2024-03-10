@@ -1,12 +1,14 @@
 import 'dart:io';
 import 'package:admin_rebuy_app/core/app_strings.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
+import 'package:admin_rebuy_app/widgets/custom_text_formfield_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:admin_rebuy_app/main_screen/add_product/cubit/add_product_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:sizer/sizer.dart';
 
 class AddProductCubit extends Cubit<AddProductState> {
   AddProductCubit() : super(AddProductIntialState());
@@ -19,6 +21,8 @@ class AddProductCubit extends Cubit<AddProductState> {
   TextEditingController descriptionTextEdController = TextEditingController();
   TextEditingController priceTextEdController = TextEditingController();
   TextEditingController oldPriceTextEdController = TextEditingController();
+  TextEditingController sizeController = TextEditingController();
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String failCollectionMessage = 'Failed to add the product,try later';
   Future<void> createFirestoreCollection() async {
@@ -41,10 +45,10 @@ class AddProductCubit extends Cubit<AddProductState> {
       emit(FailAddProductCollection());
     });
     file = null;
-    titleTextEdController.clear();
-    descriptionTextEdController.clear();
-    priceTextEdController.clear();
-    oldPriceTextEdController.clear();
+    titleTextEdController.dispose();
+    descriptionTextEdController.dispose();
+    priceTextEdController.dispose();
+    oldPriceTextEdController.dispose();
   }
 
   currentCollection(String selectedCollection) {
@@ -122,5 +126,30 @@ class AddProductCubit extends Cubit<AddProductState> {
         );
       },
     );
+  }
+
+  List<Widget> textFormFields = [];
+  List<TextEditingController> textEditingControllerList = [];
+  int index = -1;
+  void addNewTextField() {
+    textEditingControllerList.add(TextEditingController());
+    index++;
+    print('$index');
+    // emit(AddedNewTextEditingController());
+    textFormFields.add(CustomTextFormField(
+      controller: textEditingControllerList[index],
+      height: 8.h,
+      textInputType: TextInputType.number,
+      hintText: 'Size',
+      hintStyle: CustomTextStyle.textStyle18,
+      textStyle: CustomTextStyle.textStyle18,
+      contentPadding: const EdgeInsets.all(10),
+    ));
+    emit(AddedNewTextFormField());
+  }
+
+  void removeTextField() {
+    textFormFields.removeLast();
+    emit(RemoveLastTextFormField());
   }
 }

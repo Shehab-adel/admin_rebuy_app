@@ -4,7 +4,9 @@ import 'package:admin_rebuy_app/main_screen/add_product/widgets/image_upload_wid
 import 'package:admin_rebuy_app/utils/app_decoration.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:admin_rebuy_app/widgets/custom_text_formfield_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import '../../widgets/custom_elevated_button.dart';
@@ -115,6 +117,58 @@ class AddProductScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 5.h),
+              BlocBuilder<AddProductCubit, AddProductState>(
+                  builder: (context, state) {
+                return Container(
+                  padding: EdgeInsets.only(right: 30.w),
+                  height: 30.h,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            addProductCubit.addNewTextField();
+                          },
+                          icon: const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          )),
+                      SizedBox(
+                        width: 9.w,
+                      ),
+                      addProductCubit.textFormFields.isEmpty
+                          ? Expanded(
+                              child: Text(
+                                'Press on + to add sizes of products',
+                                style: CustomTextStyle.textStyle18
+                                    .copyWith(color: Colors.white),
+                              ),
+                            )
+                          : Expanded(
+                              child: ListView.builder(
+                                itemBuilder: (context, index) {
+                                  return addProductCubit.textFormFields[index];
+                                },
+                                itemCount:
+                                    addProductCubit.textFormFields.length,
+                              ),
+                            ),
+                      SizedBox(
+                        width: 9.w,
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            addProductCubit.removeTextField();
+                          },
+                          icon: const Icon(
+                            Icons.remove,
+                            color: Colors.white,
+                          )),
+                    ],
+                  ),
+                );
+              }),
+              SizedBox(width: 3.w),
               BlocConsumer<AddProductCubit, AddProductState>(
                 listener: (context, state) {
                   if (state is SuccessfulAddProductCollection) {

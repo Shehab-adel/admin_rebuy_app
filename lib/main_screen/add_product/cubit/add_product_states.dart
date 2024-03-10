@@ -23,3 +23,7 @@ class UploadIamgeCanceled extends AddProductState {}
 class UploadIamgeError extends AddProductState {}
 
 class UploadIamgeSuccess extends AddProductState {}
+
+class AddedNewTextFormField extends AddProductState {}
+
+class RemoveLastTextFormField extends AddProductState {}
