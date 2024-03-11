@@ -4,16 +4,13 @@ import 'package:admin_rebuy_app/main_screen/add_product/widgets/image_upload_wid
 import 'package:admin_rebuy_app/utils/app_decoration.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:admin_rebuy_app/widgets/custom_text_formfield_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import '../../widgets/custom_elevated_button.dart';
 
 class AddProductScreen extends StatelessWidget {
   const AddProductScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     AddProductCubit addProductCubit = AddProductCubit.get(context);
@@ -189,11 +186,10 @@ class AddProductScreen extends StatelessWidget {
                           text: 'Save',
                           onPressed: () async {
                             if (addProductCubit.formKey.currentState!
-                                    .validate() ==
-                                true) {
+                                .validate()) {
                               addProductCubit.uploadImage();
-                              await AddProductCubit.get(context)
-                                  .createFirestoreCollection();
+                              addProductCubit.getSize();
+                              await addProductCubit.createFirestoreCollection();
                             }
                           },
                           height: 7.h,

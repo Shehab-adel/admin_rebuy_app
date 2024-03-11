@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:admin_rebuy_app/core/app_strings.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
-import 'package:admin_rebuy_app/widgets/custom_text_formfield_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:admin_rebuy_app/main_screen/add_product/cubit/add_product_states.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../widgets/custom_text_formfield_widget.dart';
 
 class AddProductCubit extends Cubit<AddProductState> {
   AddProductCubit() : super(AddProductIntialState());
@@ -21,9 +22,8 @@ class AddProductCubit extends Cubit<AddProductState> {
   TextEditingController descriptionTextEdController = TextEditingController();
   TextEditingController priceTextEdController = TextEditingController();
   TextEditingController oldPriceTextEdController = TextEditingController();
-  TextEditingController sizeController = TextEditingController();
-
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   String failCollectionMessage = 'Failed to add the product,try later';
   Future<void> createFirestoreCollection() async {
     emit(LoadingAddProductCollection());
@@ -37,7 +37,8 @@ class AddProductCubit extends Cubit<AddProductState> {
       AppStrings.description: descriptionTextEdController.text,
       AppStrings.price: price,
       AppStrings.oldPrice: oldPrice,
-      AppStrings.disccountPrecentage: disccountPrecentage
+      AppStrings.disccountPrecentage: disccountPrecentage,
+      AppStrings.sizeList: sizeList
     }).then((value) {
       emit(SuccessfulAddProductCollection());
     }).onError((error, stackTrace) {
@@ -45,10 +46,14 @@ class AddProductCubit extends Cubit<AddProductState> {
       emit(FailAddProductCollection());
     });
     file = null;
-    titleTextEdController.dispose();
-    descriptionTextEdController.dispose();
-    priceTextEdController.dispose();
-    oldPriceTextEdController.dispose();
+    titleTextEdController.clear();
+    descriptionTextEdController.clear();
+    priceTextEdController.clear();
+    oldPriceTextEdController.clear();
+    textEditingControllerList.clear();
+    textFormFields.clear();
+    sizeList.clear();
+    index = 0;
   }
 
   currentCollection(String selectedCollection) {
@@ -128,14 +133,19 @@ class AddProductCubit extends Cubit<AddProductState> {
     );
   }
 
+  List<double> sizeList = [];
+
+  void getSize() {
+    for (var element in textEditingControllerList) {
+      sizeList.add(double.parse(element.text));
+    }
+  }
+
   List<Widget> textFormFields = [];
   List<TextEditingController> textEditingControllerList = [];
-  int index = -1;
+  int index = 0;
   void addNewTextField() {
     textEditingControllerList.add(TextEditingController());
-    index++;
-    print('$index');
-    // emit(AddedNewTextEditingController());
     textFormFields.add(CustomTextFormField(
       controller: textEditingControllerList[index],
       height: 8.h,
@@ -144,12 +154,26 @@ class AddProductCubit extends Cubit<AddProductState> {
       hintStyle: CustomTextStyle.textStyle18,
       textStyle: CustomTextStyle.textStyle18,
       contentPadding: const EdgeInsets.all(10),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return 'add size';
+        } else {
+          return null;
+        }
+      },
     ));
+    index++;
     emit(AddedNewTextFormField());
   }
 
   void removeTextField() {
-    textFormFields.removeLast();
-    emit(RemoveLastTextFormField());
+    if (index > 0) {
+      textEditingControllerList.removeLast();
+      textFormFields.removeLast();
+      index--;
+      emit(RemoveLastTextFormField());
+    } else {
+      return;
+    }
   }
 }
