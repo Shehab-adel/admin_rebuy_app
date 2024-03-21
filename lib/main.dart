@@ -1,5 +1,8 @@
 import 'package:admin_rebuy_app/main_screen/add_product/cubit/add_product_cubit.dart';
 import 'package:admin_rebuy_app/main_screen/home/cubit/home_cubit.dart';
+import 'package:admin_rebuy_app/main_screen/login_screen/cubit/login_cubit.dart';
+import 'package:admin_rebuy_app/main_screen/register_screen/cubit/register_cubit.dart';
+import 'package:admin_rebuy_app/main_screen/register_screen/register_screen.dart';
 import 'package:admin_rebuy_app/routes/app_routes.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +32,12 @@ class AdminRebuyApp extends StatelessWidget {
           ),
           BlocProvider<HomeCubit>(
             create: (BuildContext context) => HomeCubit(),
+          ),
+          BlocProvider<RegisterCubit>(
+            create: (BuildContext context) => RegisterCubit(),
+          ),
+          BlocProvider<LoginCubit>(
+            create: (BuildContext context) => LoginCubit(),
           ),
         ],
         child: Sizer(builder: (context, orientation, deviceType) {

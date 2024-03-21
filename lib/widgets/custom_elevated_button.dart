@@ -11,6 +11,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.width,
     this.textStyle,
     required this.text,
+    TextStyle? buttonStyle,
   });
 
   final BoxDecoration? decoration;

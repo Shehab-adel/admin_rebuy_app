@@ -18,4 +18,5 @@ class AppStrings {
   static const String megaSale = 'MegaSale';
   static const String disccountPrecentage = 'disccountPrecentage';
   static const String sizeList = 'size_list';
+  static const String displayName = 'displayName';
 }

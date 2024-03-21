@@ -16,7 +16,7 @@ class AddProductCubit extends Cubit<AddProductState> {
 
   static AddProductCubit get(BuildContext context) => BlocProvider.of(context);
   File? file;
-
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   String selectedCollection = AppStrings.menShirt;
   TextEditingController titleTextEdController = TextEditingController();
   TextEditingController descriptionTextEdController = TextEditingController();
@@ -31,7 +31,7 @@ class AddProductCubit extends Cubit<AddProductState> {
     double oldPrice = double.parse(oldPriceTextEdController.text);
     String disccountPrecentage =
         (((oldPrice - price) / oldPrice) * 100).toStringAsFixed(0);
-    await FirebaseFirestore.instance.collection(selectedCollection).add({
+    await firebaseFirestore.collection(selectedCollection).add({
       AppStrings.image: file!.path,
       AppStrings.title: titleTextEdController.text,
       AppStrings.description: descriptionTextEdController.text,

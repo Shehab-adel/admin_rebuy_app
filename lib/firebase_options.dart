@@ -44,42 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA-yISSx0-4lc0nVp6DosRxtlKTp5xTVeE',
-    appId: '1:1098117801309:web:1704945234735db61034b4',
-    messagingSenderId: '1098117801309',
-    projectId: 'rebuy-3702d',
-    authDomain: 'rebuy-3702d.firebaseapp.com',
-    storageBucket: 'rebuy-3702d.appspot.com',
-    measurementId: 'G-NNLRN601SD',
+    apiKey: 'AIzaSyAh491GvAX3hpeq-An4bbQC7wTTe2Dz82g',
+    appId: '1:430553251505:web:834c4e151ae55fceee6c90',
+    messagingSenderId: '430553251505',
+    projectId: 'rebuy-ef5a9',
+    authDomain: 'rebuy-ef5a9.firebaseapp.com',
+    storageBucket: 'rebuy-ef5a9.appspot.com',
+    measurementId: 'G-N7NTSY81JD',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCfGi3G1XXPan1zoZIP3UrYX1v01zlXvT4',
-    appId: '1:1098117801309:android:0776255450cc65ff1034b4',
-    messagingSenderId: '1098117801309',
-    projectId: 'rebuy-3702d',
-    storageBucket: 'rebuy-3702d.appspot.com',
+    apiKey: 'AIzaSyBg2SWktzTSdXwT--5kKFA91dTJ__P1CHk',
+    appId: '1:430553251505:android:954a3e838fb6d1c9ee6c90',
+    messagingSenderId: '430553251505',
+    projectId: 'rebuy-ef5a9',
+    storageBucket: 'rebuy-ef5a9.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBtN5K50LlrEgOwCgO1sIwAF6e0HQfOp98',
-    appId: '1:1098117801309:ios:b402912fa1001ce01034b4',
-    messagingSenderId: '1098117801309',
-    projectId: 'rebuy-3702d',
-    storageBucket: 'rebuy-3702d.appspot.com',
-    androidClientId: '1098117801309-a1hn047ud7urlh1hiobg0d0vjjm99n07.apps.googleusercontent.com',
-    iosClientId: '1098117801309-qj513l86ocjquvrkqab5u95t2n0spvc7.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCbottmyJWPCMufxOU8do4A-KsbZq-IyUA',
+    appId: '1:430553251505:ios:bf50b761dfec1833ee6c90',
+    messagingSenderId: '430553251505',
+    projectId: 'rebuy-ef5a9',
+    storageBucket: 'rebuy-ef5a9.appspot.com',
     iosBundleId: 'com.example.adminRebuyApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBtN5K50LlrEgOwCgO1sIwAF6e0HQfOp98',
-    appId: '1:1098117801309:ios:3656aa7593bc70571034b4',
-    messagingSenderId: '1098117801309',
-    projectId: 'rebuy-3702d',
-    storageBucket: 'rebuy-3702d.appspot.com',
-    androidClientId: '1098117801309-a1hn047ud7urlh1hiobg0d0vjjm99n07.apps.googleusercontent.com',
-    iosClientId: '1098117801309-p7b5buq33cpotar5tnvlegbfnkpj2jpe.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCbottmyJWPCMufxOU8do4A-KsbZq-IyUA',
+    appId: '1:430553251505:ios:987803fa575e57f3ee6c90',
+    messagingSenderId: '430553251505',
+    projectId: 'rebuy-ef5a9',
+    storageBucket: 'rebuy-ef5a9.appspot.com',
     iosBundleId: 'com.example.adminRebuyApp.RunnerTests',
   );
 }

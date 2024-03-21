@@ -1,6 +1,7 @@
 import 'package:admin_rebuy_app/main_screen/add_product/cubit/add_product_cubit.dart';
 import 'package:admin_rebuy_app/main_screen/add_product/cubit/add_product_states.dart';
 import 'package:admin_rebuy_app/main_screen/add_product/widgets/image_upload_widget.dart';
+import 'package:admin_rebuy_app/main_screen/register_screen/cubit/register_cubit.dart';
 import 'package:admin_rebuy_app/utils/app_decoration.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:admin_rebuy_app/widgets/custom_text_formfield_widget.dart';
@@ -186,10 +187,13 @@ class AddProductScreen extends StatelessWidget {
                           text: 'Save',
                           onPressed: () async {
                             if (addProductCubit.formKey.currentState!
-                                .validate()) {
+                                    .validate()) {
                               addProductCubit.uploadImage();
                               addProductCubit.getSize();
                               await addProductCubit.createFirestoreCollection();
+                            } else {
+                              addProductCubit.loginshowDialog(
+                                  context, 'Error', 'User does not found');
                             }
                           },
                           height: 7.h,
