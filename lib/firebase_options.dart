@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAh491GvAX3hpeq-An4bbQC7wTTe2Dz82g',
-    appId: '1:430553251505:web:834c4e151ae55fceee6c90',
-    messagingSenderId: '430553251505',
-    projectId: 'rebuy-ef5a9',
-    authDomain: 'rebuy-ef5a9.firebaseapp.com',
-    storageBucket: 'rebuy-ef5a9.appspot.com',
-    measurementId: 'G-N7NTSY81JD',
+    apiKey: 'AIzaSyDDr5llB0JIWXYE-2VIsjEuX2mrQD6T0p0',
+    appId: '1:389306761187:web:04056ba43419fc8ca7aad6',
+    messagingSenderId: '389306761187',
+    projectId: 'rebuy-675c7',
+    authDomain: 'rebuy-675c7.firebaseapp.com',
+    storageBucket: 'rebuy-675c7.appspot.com',
+    measurementId: 'G-EJFEN9MB3G',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBg2SWktzTSdXwT--5kKFA91dTJ__P1CHk',
-    appId: '1:430553251505:android:954a3e838fb6d1c9ee6c90',
-    messagingSenderId: '430553251505',
-    projectId: 'rebuy-ef5a9',
-    storageBucket: 'rebuy-ef5a9.appspot.com',
+    apiKey: 'AIzaSyAMyTZJAlwf38FC06_g-CVmpAh_Fq9zPRc',
+    appId: '1:389306761187:android:16f6157f6fa65fa0a7aad6',
+    messagingSenderId: '389306761187',
+    projectId: 'rebuy-675c7',
+    storageBucket: 'rebuy-675c7.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCbottmyJWPCMufxOU8do4A-KsbZq-IyUA',
-    appId: '1:430553251505:ios:bf50b761dfec1833ee6c90',
-    messagingSenderId: '430553251505',
-    projectId: 'rebuy-ef5a9',
-    storageBucket: 'rebuy-ef5a9.appspot.com',
+    apiKey: 'AIzaSyCRSrNz3OLMWjAcZJp_NlJTi-nE_9wbjRw',
+    appId: '1:389306761187:ios:4a23c8be67583e45a7aad6',
+    messagingSenderId: '389306761187',
+    projectId: 'rebuy-675c7',
+    storageBucket: 'rebuy-675c7.appspot.com',
     iosBundleId: 'com.example.adminRebuyApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCbottmyJWPCMufxOU8do4A-KsbZq-IyUA',
-    appId: '1:430553251505:ios:987803fa575e57f3ee6c90',
-    messagingSenderId: '430553251505',
-    projectId: 'rebuy-ef5a9',
-    storageBucket: 'rebuy-ef5a9.appspot.com',
+    apiKey: 'AIzaSyCRSrNz3OLMWjAcZJp_NlJTi-nE_9wbjRw',
+    appId: '1:389306761187:ios:a3447d36eae1d9ffa7aad6',
+    messagingSenderId: '389306761187',
+    projectId: 'rebuy-675c7',
+    storageBucket: 'rebuy-675c7.appspot.com',
     iosBundleId: 'com.example.adminRebuyApp.RunnerTests',
   );
 }
