@@ -1,7 +1,7 @@
 import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:flutter/material.dart';
 
-void loginshowDialog(BuildContext context, String title, String content) {
+void customshowDialog(BuildContext context, String title, String content) {
   showDialog(
     context: context,
     builder: (BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:admin_rebuy_app/core/app_strings.dart';
+import 'package:admin_rebuy_app/core/functions.dart';
 import 'package:admin_rebuy_app/core/image_constant.dart';
 import 'package:admin_rebuy_app/routes/app_routes.dart';
 import 'package:admin_rebuy_app/widgets/custom_elevated_button.dart';
@@ -25,7 +26,8 @@ class LoginScreen extends StatelessWidget {
               if (state is SuccessfulLogin) {
                 Navigator.pushNamed(context, AppRoutes.mainScreen);
               } else if (state is FailLogin) {
-                print('Faillllllll---');
+                customshowDialog(
+                    context, 'Error! try again', 'password is wrong');
               }
             },
             builder: (context, state) {
@@ -49,11 +51,16 @@ class LoginScreen extends StatelessWidget {
                     left: 5.w,
                   ),
                 ),
-                CustomElevatedButton(
-                    text: AppStrings.signIn,
-                    onPressed: () {
-                      loginCubit.loginWithFirebase();
-                    }),
+                state is LoadingLogin
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                        color: Colors.purple,
+                      ))
+                    : CustomElevatedButton(
+                        text: AppStrings.signIn,
+                        onPressed: () {
+                          loginCubit.loginWithFirebase();
+                        }),
                 SizedBox(height: 18.h),
               ]);
             },

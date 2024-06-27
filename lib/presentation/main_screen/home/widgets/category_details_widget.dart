@@ -17,7 +17,7 @@ class CategoryDetailsWidget extends StatelessWidget {
       listener: (context, state) {
         if (state is SuccessfulFetchCollection) {
           if (homeCubit.dataList!.isEmpty) {
-            loginshowDialog(context, 'Empty!',
+            customshowDialog(context, 'Empty!',
                 'There is no products here.Try to add products first');
           }
         }

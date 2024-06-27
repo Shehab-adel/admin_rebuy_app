@@ -1,3 +1,4 @@
+import 'package:admin_rebuy_app/core/app_strings.dart';
 import 'package:admin_rebuy_app/presentation/login/cubit/login_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,11 @@ class LoginCubit extends Cubit<LoginState> {
   loginWithFirebase() async {
     emit(LoadingLogin());
     await FirebaseFirestore.instance
-        .collection("admin")
-        .doc("adminLogin")
+        .collection(AppStrings.admin)
+        .doc(AppStrings.adminLogin)
         .snapshots()
         .forEach((element) {
-      if (element.data()?['password'] == passwordController.text) {
+      if (element.data()?[AppStrings.password] == passwordController.text) {
         emit(SuccessfulLogin());
       } else {
         emit(FailLogin());
