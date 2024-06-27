@@ -2,14 +2,14 @@ import 'dart:io';
 import 'package:admin_rebuy_app/core/app_strings.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:admin_rebuy_app/main_screen/add_product/cubit/add_product_states.dart';
+import 'package:admin_rebuy_app/presentation/main_screen/add_product/cubit/add_product_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../widgets/custom_text_formfield_widget.dart';
+import '../../../../widgets/custom_text_formfield_widget.dart';
 
 class AddProductCubit extends Cubit<AddProductState> {
   AddProductCubit() : super(AddProductIntialState());

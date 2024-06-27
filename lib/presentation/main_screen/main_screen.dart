@@ -1,5 +1,5 @@
-import 'package:admin_rebuy_app/main_screen/category/category_screen.dart';
-import 'package:admin_rebuy_app/main_screen/home/home_screen.dart';
+import 'package:admin_rebuy_app/presentation/main_screen/category/category_screen.dart';
+import 'package:admin_rebuy_app/presentation/main_screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {

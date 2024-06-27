@@ -1,5 +1,5 @@
 import 'package:admin_rebuy_app/core/app_strings.dart';
-import 'package:admin_rebuy_app/main_screen/add_product/cubit/add_product_cubit.dart';
+import 'package:admin_rebuy_app/presentation/main_screen/add_product/cubit/add_product_cubit.dart';
 import 'package:admin_rebuy_app/routes/app_routes.dart';
 import 'package:admin_rebuy_app/utils/app_decoration.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';

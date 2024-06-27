@@ -19,4 +19,8 @@ class AppStrings {
   static const String disccountPrecentage = 'disccountPrecentage';
   static const String sizeList = 'size_list';
   static const String displayName = 'displayName';
+  static const String welcomeToEcom = 'welcomeToEcom';
+  static const String password = 'password';
+  static const String signInToContinue = 'signInToContinue';
+  static const String signIn = 'signIn';
 }

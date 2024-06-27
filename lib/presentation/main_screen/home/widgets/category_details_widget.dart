@@ -1,5 +1,5 @@
-import 'package:admin_rebuy_app/main_screen/home/cubit/home_cubit.dart';
-import 'package:admin_rebuy_app/main_screen/home/cubit/home_sate.dart';
+import 'package:admin_rebuy_app/presentation/main_screen/home/cubit/home_cubit.dart';
+import 'package:admin_rebuy_app/presentation/main_screen/home/cubit/home_sate.dart';
 import 'package:admin_rebuy_app/utils/app_decoration.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:flutter/material.dart';
@@ -14,19 +14,7 @@ class CategoryDetailsWidget extends StatelessWidget {
     HomeCubit homeCubit = HomeCubit.get(context);
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
-        if (state is LoadingFetchCollection || state is FailFetchCollection) {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.red,
-                  ),
-                );
-              });
-        }
         if (state is SuccessfulFetchCollection) {
-          Navigator.of(context).pop();
           if (homeCubit.dataList!.isEmpty) {
             homeCubit.loginshowDialog(context, 'Empty!',
                 'There is no products here.Try to add products first');

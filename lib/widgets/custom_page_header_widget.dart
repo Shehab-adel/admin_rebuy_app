@@ -18,7 +18,7 @@ class CustomPageHeaderWidget extends StatelessWidget {
           width: 30.w,
           padding: const EdgeInsets.all(20),
           decoration: IconButtonStyleHelper.fillPrimary,
-          child: CustomImageView(imagePath: AppImageConstants.imgClose)),
+          child: CustomImageView(imagePath: AppImageConstants.imageClose)),
       SizedBox(height: 5.h),
       Text(text1, style: theme.textTheme.titleMedium),
       SizedBox(height: 1.h),

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:admin_rebuy_app/core/app_strings.dart';
-import 'package:admin_rebuy_app/main_screen/home/cubit/home_sate.dart';
-import 'package:admin_rebuy_app/main_screen/home/models/data_model.dart';
+import 'package:admin_rebuy_app/presentation/main_screen/home/cubit/home_sate.dart';
+import 'package:admin_rebuy_app/presentation/main_screen/home/models/data_model.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
