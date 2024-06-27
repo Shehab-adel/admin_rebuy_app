@@ -1,4 +1,5 @@
 import 'package:admin_rebuy_app/presentation/main_screen/category/category_screen.dart';
+import 'package:admin_rebuy_app/presentation/main_screen/home/cubit/home_cubit.dart';
 import 'package:admin_rebuy_app/presentation/main_screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,12 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> _screens = const [HomeScreen(), CategoryScreen()];
+  final List<Widget> _screens = [
+    HomeScreen(
+      homeCubit: HomeCubit(),
+    ),
+    const CategoryScreen()
+  ];
 
   @override
   Widget build(BuildContext context) {

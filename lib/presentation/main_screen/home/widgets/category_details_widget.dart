@@ -1,3 +1,4 @@
+import 'package:admin_rebuy_app/core/functions.dart';
 import 'package:admin_rebuy_app/presentation/main_screen/home/cubit/home_cubit.dart';
 import 'package:admin_rebuy_app/presentation/main_screen/home/cubit/home_sate.dart';
 import 'package:admin_rebuy_app/utils/app_decoration.dart';
@@ -7,16 +8,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class CategoryDetailsWidget extends StatelessWidget {
-  const CategoryDetailsWidget({super.key});
+  const CategoryDetailsWidget({super.key, required this.homeCubit});
+  final HomeCubit homeCubit;
 
   @override
   Widget build(BuildContext context) {
-    HomeCubit homeCubit = HomeCubit.get(context);
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
         if (state is SuccessfulFetchCollection) {
           if (homeCubit.dataList!.isEmpty) {
-            homeCubit.loginshowDialog(context, 'Empty!',
+            loginshowDialog(context, 'Empty!',
                 'There is no products here.Try to add products first');
           }
         }

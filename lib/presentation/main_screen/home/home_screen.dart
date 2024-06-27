@@ -8,10 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.homeCubit});
+  final HomeCubit homeCubit;
   @override
   Widget build(BuildContext context) {
-    HomeCubit homeCubit = HomeCubit.get(context);
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         return Column(
@@ -53,7 +53,9 @@ class HomeScreen extends StatelessWidget {
               thickness: 2,
               color: Colors.white,
             ),
-            const CategoryDetailsWidget(),
+            CategoryDetailsWidget(
+              homeCubit: homeCubit,
+            ),
             SizedBox(height: 1.h),
           ],
         );

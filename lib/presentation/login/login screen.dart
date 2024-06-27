@@ -21,7 +21,13 @@ class LoginScreen extends StatelessWidget {
         body: SingleChildScrollView(
           padding: EdgeInsets.only(left: 16.w, top: 10.h, right: 16.w),
           child: BlocConsumer<LoginCubit, LoginState>(
-            listener: (context, state) {},
+            listener: (context, state) {
+              if (state is SuccessfulLogin) {
+                Navigator.pushNamed(context, AppRoutes.mainScreen);
+              } else if (state is FailLogin) {
+                print('Faillllllll---');
+              }
+            },
             builder: (context, state) {
               return Column(children: [
                 const CustomPageHeaderWidget(
@@ -46,7 +52,7 @@ class LoginScreen extends StatelessWidget {
                 CustomElevatedButton(
                     text: AppStrings.signIn,
                     onPressed: () {
-                      Navigator.pushNamed(context, AppRoutes.mainScreen);
+                      loginCubit.loginWithFirebase();
                     }),
                 SizedBox(height: 18.h),
               ]);
