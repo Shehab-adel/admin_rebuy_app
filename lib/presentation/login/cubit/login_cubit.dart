@@ -1,4 +1,5 @@
 import 'package:admin_rebuy_app/core/app_strings.dart';
+import 'package:admin_rebuy_app/network/local/cache%20helper.dart';
 import 'package:admin_rebuy_app/presentation/login/cubit/login_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -27,12 +28,13 @@ class LoginCubit extends Cubit<LoginState> {
     });
   }
 
-  List<String> branchesList = ['Beniseuf', 'Cairo'];
+  List<String> branchesList = [AppStrings.beniseuf, AppStrings.cairo];
 
-  String dropdownValue = 'Beniseuf';
+  String dropdownValue = AppStrings.beniseuf;
 
   changeBrancheInDropdown(String? value) {
     dropdownValue = value ?? '';
+    CacheHelper.sharedPreferences.setString(AppStrings.branch, dropdownValue);
     emit(ChangeBrancheInDropdown());
   }
 }

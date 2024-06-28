@@ -58,6 +58,11 @@ class LoginScreen extends StatelessWidget {
                       ))
                     : CustomElevatedButton(
                         text: AppStrings.signIn,
+                        textStyle: const TextStyle(color: Colors.white),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.blue),
+                        ),
                         onPressed: () {
                           loginCubit.loginWithFirebase();
                         }),

@@ -25,4 +25,7 @@ class AppStrings {
   static const String signIn = 'signIn';
   static const String admin = 'admin';
   static const String adminLogin = 'adminLogin';
+  static const String beniseuf = 'Beniseuf';
+  static const String cairo = 'Cairo';
+  static const String branch = 'Branch';
 }

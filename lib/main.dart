@@ -1,3 +1,4 @@
+import 'package:admin_rebuy_app/network/local/cache%20helper.dart';
 import 'package:admin_rebuy_app/presentation/login/cubit/login_cubit.dart';
 import 'package:admin_rebuy_app/presentation/main_screen/add_product/cubit/add_product_cubit.dart';
 import 'package:admin_rebuy_app/presentation/main_screen/home/cubit/home_cubit.dart';
@@ -14,6 +15,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await CacheHelper.init();
   runApp(const AdminRebuyApp());
 }
 
