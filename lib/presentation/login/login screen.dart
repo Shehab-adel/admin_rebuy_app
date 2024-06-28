@@ -61,7 +61,20 @@ class LoginScreen extends StatelessWidget {
                         onPressed: () {
                           loginCubit.loginWithFirebase();
                         }),
-                SizedBox(height: 18.h),
+                SizedBox(height: 6.h),
+                DropdownButton(
+                  value: loginCubit.dropdownValue,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  items: loginCubit.branchesList.map((String item) {
+                    return DropdownMenuItem(
+                      value: item,
+                      child: Text(item),
+                    );
+                  }).toList(),
+                  onChanged: (String? value) {
+                    loginCubit.changeBrancheInDropdown(value);
+                  },
+                ),
               ]);
             },
           ),

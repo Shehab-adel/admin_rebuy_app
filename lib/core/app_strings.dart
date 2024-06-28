@@ -23,4 +23,6 @@ class AppStrings {
   static const String password = 'password';
   static const String signInToContinue = 'signInToContinue';
   static const String signIn = 'signIn';
+  static const String admin = 'admin';
+  static const String adminLogin = 'adminLogin';
 }

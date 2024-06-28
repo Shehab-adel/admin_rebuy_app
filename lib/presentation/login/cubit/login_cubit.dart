@@ -26,4 +26,13 @@ class LoginCubit extends Cubit<LoginState> {
       }
     });
   }
+
+  List<String> branchesList = ['Beniseuf', 'Cairo'];
+
+  String dropdownValue = 'Beniseuf';
+
+  changeBrancheInDropdown(String? value) {
+    dropdownValue = value ?? '';
+    emit(ChangeBrancheInDropdown());
+  }
 }
