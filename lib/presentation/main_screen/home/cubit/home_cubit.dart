@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:admin_rebuy_app/core/app_strings.dart';
+import 'package:admin_rebuy_app/network/local/cache%20helper.dart';
 import 'package:admin_rebuy_app/presentation/main_screen/home/cubit/home_sate.dart';
 import 'package:admin_rebuy_app/presentation/main_screen/home/models/data_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -39,29 +40,34 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       emit(LoadingFetchCollection());
       final querySnapshot = await FirebaseFirestore.instance
-          .collection(categoryList[selectedCategory])
+          .collection(CacheHelper.selectedBranch() ?? AppStrings.beniseuf)
           .get();
-
-      dataList = await Future.wait(querySnapshot.docs.map((doc) async {
+      print("${querySnapshot.docs.first.data()['description']}+++++++++++");
+      querySnapshot.docs.map((doc) {
         final data = doc.data();
+        // print("${data[categoryList[selectedCategory]]['title']}+++++++++++");
         final file = data['image'];
+        print('${data['image']}iii+++++++');
         final ref = FirebaseStorage.instance.ref().child(file);
-        final url = await ref.getDownloadURL();
-        return DataModel(
+        final url = ref.getDownloadURL();
+        dataList?.add(DataModel(
           image: url.toString(),
           title: data['title'],
           description: data['description'],
           price: data['price'],
           oldPrice: data['old_price'],
           disccountPrecentage: data['disccountPrecentage'],
-        );
-      }).toList());
+        ));
+      });
+
       emit(SuccessfulFetchCollection());
-      print('${dataList?[0].sizeList?[0]} ---------------******');
-      print('Sucessful ---------------******');
+      print('${dataList?.length} ---------------ss******');
+      print('Sucessful ---------------8******');
     } on FirebaseException catch (error) {
+      print('${dataList} ---------------data******');
+
       message = error.toString();
-      print('$message  Fail ---------------******');
+      print('$message  Fail ---------------8******');
       emit(FailFetchCollection());
     } catch (error) {
       message = error.toString();

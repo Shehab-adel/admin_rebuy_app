@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:admin_rebuy_app/core/app_strings.dart';
+import 'package:admin_rebuy_app/network/local/cache%20helper.dart';
+import 'package:admin_rebuy_app/presentation/login/cubit/login_cubit.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:admin_rebuy_app/presentation/main_screen/add_product/cubit/add_product_states.dart';
@@ -31,7 +33,12 @@ class AddProductCubit extends Cubit<AddProductState> {
     double oldPrice = double.parse(oldPriceTextEdController.text);
     String disccountPrecentage =
         (((oldPrice - price) / oldPrice) * 100).toStringAsFixed(0);
-    await firebaseFirestore.collection(selectedCollection).add({
+
+    await firebaseFirestore
+        .collection(CacheHelper.selectedBranch() ?? '')
+        .doc()
+        .collection(selectedCollection)
+        .add({
       AppStrings.image: file!.path,
       AppStrings.title: titleTextEdController.text,
       AppStrings.description: descriptionTextEdController.text,
