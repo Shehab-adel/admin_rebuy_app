@@ -33,7 +33,7 @@ class LoginCubit extends Cubit<LoginState> {
   String dropdownValue = AppStrings.beniseuf;
 
   changeBrancheInDropdown(String? value) {
-    dropdownValue = value ?? '';
+    dropdownValue = value ?? AppStrings.beniseuf;
     CacheHelper.sharedPreferences.setString(AppStrings.branch, dropdownValue);
     emit(ChangeBrancheInDropdown());
   }
