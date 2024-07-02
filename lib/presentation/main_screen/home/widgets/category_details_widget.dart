@@ -15,12 +15,12 @@ class CategoryDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
-        if (state is SuccessfulFetchCollection) {
-          if (homeCubit.dataList!.isEmpty) {
-            customshowDialog(context, 'Empty!',
-                'There is no products here.Try to add products first');
-          }
-        }
+        // if (state is SuccessfulFetchCollection) {
+        //   if (homeCubit.dataList!.isEmpty) {
+        //     customshowDialog(context, 'Empty!',
+        //         'There is no products here.Try to add products first');
+        //   }
+        // }
       },
       builder: (context, state) {
         return Expanded(

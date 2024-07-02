@@ -13,17 +13,10 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> _screens = [
-    HomeScreen(
-      homeCubit: HomeCubit(),
-    ),
-    const CategoryScreen()
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex],
+      body: _screens(context).elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) {
@@ -44,4 +37,11 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
   }
+
+  List<Widget> _screens(BuildContext context) => [
+        HomeScreen(
+          homeCubit: HomeCubit.get(context),
+        ),
+        const CategoryScreen()
+      ];
 }

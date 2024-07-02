@@ -41,33 +41,30 @@ class HomeCubit extends Cubit<HomeState> {
       emit(LoadingFetchCollection());
       final querySnapshot = await FirebaseFirestore.instance
           .collection(CacheHelper.selectedBranch() ?? AppStrings.beniseuf)
+          .doc(AppStrings.dataModel)
+          .collection(categoryList[selectedCategory])
           .get();
-      print("${querySnapshot.docs.first.data()['description']}+++++++++++");
-      querySnapshot.docs.map((doc) {
+
+      dataList = await Future.wait(querySnapshot.docs.map((doc) async {
         final data = doc.data();
-        // print("${data[categoryList[selectedCategory]]['title']}+++++++++++");
         final file = data['image'];
-        print('${data['image']}iii+++++++');
+
         final ref = FirebaseStorage.instance.ref().child(file);
-        final url = ref.getDownloadURL();
-        dataList?.add(DataModel(
+        final url = await ref.getDownloadURL();
+        return DataModel(
           image: url.toString(),
           title: data['title'],
           description: data['description'],
           price: data['price'],
           oldPrice: data['old_price'],
           disccountPrecentage: data['disccountPrecentage'],
-        ));
-      });
-
+        );
+      }));
       emit(SuccessfulFetchCollection());
-      print('${dataList?.length} ---------------ss******');
       print('Sucessful ---------------8******');
     } on FirebaseException catch (error) {
-      print('${dataList} ---------------data******');
-
       message = error.toString();
-      print('$message  Fail ---------------8******');
+      print('$message  Fail ---------------******');
       emit(FailFetchCollection());
     } catch (error) {
       message = error.toString();
