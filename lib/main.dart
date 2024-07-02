@@ -42,7 +42,7 @@ class AdminRebuyApp extends StatelessWidget {
             title: 'Admin rebuy app',
             debugShowCheckedModeBanner: false,
             theme: ThemeApp.themeData(),
-            initialRoute: AppRoutes.loginScreen,
+            initialRoute: LoginCubit.get(context).startScreen(),
             routes: AppRoutes.routes,
           );
         }));

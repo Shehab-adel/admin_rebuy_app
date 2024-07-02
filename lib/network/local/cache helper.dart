@@ -13,4 +13,6 @@ class CacheHelper {
 
   static String? selectedBranch() =>
       sharedPreferences.getString(AppStrings.branch);
+
+  static bool? isLoggin() => sharedPreferences.getBool(AppStrings.isLoggin);
 }
