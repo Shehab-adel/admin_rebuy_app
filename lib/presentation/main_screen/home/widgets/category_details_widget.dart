@@ -3,7 +3,10 @@ import 'package:admin_rebuy_app/presentation/main_screen/home/cubit/home_cubit.d
 import 'package:admin_rebuy_app/presentation/main_screen/home/cubit/home_sate.dart';
 import 'package:admin_rebuy_app/utils/app_decoration.dart';
 import 'package:admin_rebuy_app/utils/theme_app.dart';
+import 'package:admin_rebuy_app/widgets/custom_image_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,12 +18,12 @@ class CategoryDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
-        // if (state is SuccessfulFetchCollection) {
-        //   if (homeCubit.dataList!.isEmpty) {
-        //     customshowDialog(context, 'Empty!',
-        //         'There is no products here.Try to add products first');
-        //   }
-        // }
+        if (state is SuccessfulFetchCollection) {
+          if (homeCubit.dataList!.isEmpty) {
+            customshowDialog(context, 'Empty!',
+                'There is no products here.Try to add products first');
+          }
+        }
       },
       builder: (context, state) {
         return Expanded(
@@ -31,17 +34,21 @@ class CategoryDetailsWidget extends StatelessWidget {
               return Container(
                 height: 60.h,
                 decoration: AppDecoration.outlineBlue.copyWith(
-                    borderRadius: BorderRadiusStyle.roundedBorder5,
-                    color: CustomColor.whitecolor),
+                  borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(16)),
+                  color: Colors.white,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     SizedBox(
                       height: 35.h,
-                      width: 70.w,
-                      child: Image.network(
-                        height: 40,
-                        homeCubit.dataList?[index].image ?? '',
+                      width: double.infinity,
+                      child: CustomImageView(
+                        height: 40.h,
+                        imagePath: homeCubit.dataList?[index].image ?? '',
+                        fit: BoxFit.fill,
                       ),
                     ),
                     SizedBox(height: 1.h),
