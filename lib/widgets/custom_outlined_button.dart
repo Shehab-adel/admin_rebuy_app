@@ -1,8 +1,8 @@
+import 'package:admin_rebuy_app/utils/theme_app.dart';
 import 'package:flutter/material.dart';
 
 import 'package:sizer/sizer.dart';
 
-import '../core/theme/custom_text_style.dart';
 import 'base_button.dart';
 
 class CustomOutlinedButton extends BaseButton {
@@ -66,8 +66,7 @@ class CustomOutlinedButton extends BaseButton {
               leftIcon ?? const SizedBox.shrink(),
               Text(
                 text,
-                style:
-                    buttonTextStyle ?? CustomTextStyles.titleSmallBluegray300,
+                style: buttonTextStyle ?? CustomTextStyle.textStyle20,
               ),
               rightIcon ?? const SizedBox.shrink(),
             ],

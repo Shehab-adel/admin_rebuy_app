@@ -1,6 +1,7 @@
 import 'package:admin_rebuy_app/presentation/main_screen/category/category_screen.dart';
 import 'package:admin_rebuy_app/presentation/main_screen/home/cubit/home_cubit.dart';
 import 'package:admin_rebuy_app/presentation/main_screen/home/home_screen.dart';
+import 'package:admin_rebuy_app/presentation/settings/settingsscreen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -33,6 +34,10 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.add_box),
             label: 'Category',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
         ],
       ),
     );
@@ -42,6 +47,7 @@ class _MainScreenState extends State<MainScreen> {
         HomeScreen(
           homeCubit: HomeCubit.get(context),
         ),
-        const CategoryScreen()
+        const CategoryScreen(),
+        const SettingsScreen()
       ];
 }

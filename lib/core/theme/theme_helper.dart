@@ -101,43 +101,35 @@ class TextThemes {
         bodySmall: TextStyle(
           color: appTheme.blueGray300,
           fontSize: 12,
-
           fontWeight: FontWeight.w400,
         ),
         headlineSmall: TextStyle(
           color: colorScheme.onPrimaryContainer.withOpacity(1),
           fontSize: 24,
-
           fontWeight: FontWeight.w700,
         ),
         labelLarge: TextStyle(
           color: colorScheme.onPrimary.withOpacity(1),
           fontSize: 12,
-
           fontWeight: FontWeight.w700,
         ),
         labelMedium: TextStyle(
           color: appTheme.pink300,
           fontSize: 12,
-
           fontWeight: FontWeight.w700,
         ),
         titleLarge: TextStyle(
           color: colorScheme.primary.withOpacity(1),
           fontSize: 20,
-
           fontWeight: FontWeight.w700,
         ),
         titleMedium: TextStyle(
           color: colorScheme.onPrimary.withOpacity(1),
           fontSize: 16,
-
-
         ),
         titleSmall: TextStyle(
           color: colorScheme.onPrimary.withOpacity(1),
           fontSize: 14,
-
           fontWeight: FontWeight.w700,
         ),
       );
