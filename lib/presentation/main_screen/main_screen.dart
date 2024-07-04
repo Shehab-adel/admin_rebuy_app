@@ -1,3 +1,4 @@
+import 'package:admin_rebuy_app/presentation/login/cubit/login_cubit.dart';
 import 'package:admin_rebuy_app/presentation/main_screen/category/category_screen.dart';
 import 'package:admin_rebuy_app/presentation/main_screen/home/cubit/home_cubit.dart';
 import 'package:admin_rebuy_app/presentation/main_screen/home/home_screen.dart';
@@ -48,6 +49,8 @@ class _MainScreenState extends State<MainScreen> {
           homeCubit: HomeCubit.get(context),
         ),
         const CategoryScreen(),
-        const SettingsScreen()
+        SettingsScreen(
+          loginCubit: LoginCubit.get(context),
+        )
       ];
 }
