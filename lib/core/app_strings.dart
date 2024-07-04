@@ -30,5 +30,5 @@ class AppStrings {
   static const String branch = 'Branch';
   static const String dataModel = 'data model';
   static const String isLoggin = 'isLoggin';
-  // static const String dataModel = 'data model';
+  static const String logout = 'Logout';
 }
