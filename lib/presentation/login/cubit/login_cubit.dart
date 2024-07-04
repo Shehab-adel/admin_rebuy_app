@@ -46,4 +46,18 @@ class LoginCubit extends Cubit<LoginState> {
         ? AppRoutes.mainScreen
         : AppRoutes.loginScreen;
   }
+
+  String logoutMess = 'logout';
+  void logOut() async {
+    emit(LoadingLogout());
+    await CacheHelper.sharedPreferences
+        .setBool(AppStrings.isLoggin, false)
+        .then((value) {
+      logoutMess = value.toString();
+      emit(SuccessfulLogout());
+    }).onError((error, stackTrace) {
+      logoutMess = error.toString();
+      emit(FailLogout());
+    });
+  }
 }

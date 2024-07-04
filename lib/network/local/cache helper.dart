@@ -8,9 +8,6 @@ class CacheHelper {
     sharedPreferences = await SharedPreferences.getInstance();
   }
 
-  static String? getDisplayName() =>
-      sharedPreferences.getString(AppStrings.displayName);
-
   static String? selectedBranch() =>
       sharedPreferences.getString(AppStrings.branch);
 
