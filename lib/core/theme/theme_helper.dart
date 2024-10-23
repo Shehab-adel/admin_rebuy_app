@@ -6,12 +6,12 @@ String _appTheme = "primary";
 /// Helper class for managing themes and colors.
 class ThemeHelper {
   // A map of custom color themes supported by the app
-  Map<String, PrimaryColors> _supportedCustomColor = {
+  final Map<String, PrimaryColors> _supportedCustomColor = {
     'primary': PrimaryColors()
   };
 
 // A map of color schemes supported by the app
-  Map<String, ColorScheme> _supportedColorScheme = {
+  final Map<String, ColorScheme> _supportedColorScheme = {
     'primary': ColorSchemes.primaryColorScheme
   };
 

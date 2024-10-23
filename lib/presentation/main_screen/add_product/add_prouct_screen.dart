@@ -113,7 +113,8 @@ class AddProductScreen extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: 5.h),
+              SizedBox(height: 5.h), //Size part
+
               BlocBuilder<AddProductCubit, AddProductState>(
                   builder: (context, state) {
                 return Container(
@@ -165,7 +166,7 @@ class AddProductScreen extends StatelessWidget {
                   ),
                 );
               }),
-              SizedBox(width: 3.w),
+              SizedBox(width: 3.w), // Save button
               BlocConsumer<AddProductCubit, AddProductState>(
                 listener: (context, state) {
                   if (state is SuccessfulAddProductCollection) {
@@ -187,9 +188,17 @@ class AddProductScreen extends StatelessWidget {
                           onPressed: () async {
                             if (addProductCubit.formKey.currentState!
                                 .validate()) {
-                              addProductCubit.uploadImage();
-                              addProductCubit.getSize();
-                              await addProductCubit.createFirestoreCollection();
+                              if (addProductCubit.textFormFields.isEmpty) {
+                                addProductCubit.loginshowDialog(
+                                    context,
+                                    'Error',
+                                    'Plz add the current size of the piece');
+                              } else {
+                                addProductCubit.uploadImage();
+                                addProductCubit.getSize();
+                                await addProductCubit
+                                    .createFirestoreCollection();
+                              }
                             } else {
                               addProductCubit.loginshowDialog(
                                   context, 'Error', 'User does not found');

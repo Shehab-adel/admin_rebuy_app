@@ -1,3 +1,4 @@
+import 'package:admin_rebuy_app/core/app_strings.dart';
 import 'package:admin_rebuy_app/core/functions.dart';
 import 'package:admin_rebuy_app/presentation/login/cubit/login_cubit.dart';
 import 'package:admin_rebuy_app/presentation/login/cubit/login_state.dart';
@@ -15,7 +16,7 @@ class SettingsScreen extends StatelessWidget {
       if (state is SuccessfulLogout) {
         customshowDialog(context, loginCubit.logoutMess, 'Is Done!');
       } else if (state is FailLogout) {
-        customshowDialog(context, loginCubit.logoutMess, 'Try again!');
+        customshowDialog(context, loginCubit.logoutMess, 'Try again');
       }
     }, builder: (context, state) {
       return Container(
@@ -24,7 +25,7 @@ class SettingsScreen extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                "LogOut",
+                AppStrings.logout,
                 style:
                     CustomTextStyle.textStyle20.copyWith(color: Colors.white),
               ),
@@ -40,7 +41,7 @@ class SettingsScreen extends StatelessWidget {
             ),
             ListTile(
               title: Text(
-                "Branch",
+                AppStrings.branch,
                 style:
                     CustomTextStyle.textStyle20.copyWith(color: Colors.white),
               ),

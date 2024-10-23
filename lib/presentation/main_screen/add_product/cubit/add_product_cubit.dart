@@ -34,7 +34,7 @@ class AddProductCubit extends Cubit<AddProductState> {
         (((oldPrice - price) / oldPrice) * 100).toStringAsFixed(0);
 
     await firebaseFirestore
-        .collection(CacheHelper.selectedBranch() ?? '')
+        .collection(CacheHelper.selectedBranch() ?? AppStrings.beniseuf)
         .doc(AppStrings.dataModel)
         .collection(selectedCollection)
         .add({
@@ -46,11 +46,14 @@ class AddProductCubit extends Cubit<AddProductState> {
       AppStrings.disccountPrecentage: disccountPrecentage,
       AppStrings.sizeList: sizeList
     }).then((value) {
+      print('Successful added***********');
       emit(SuccessfulAddProductCollection());
     }).onError((error, stackTrace) {
       failCollectionMessage = error.toString();
+      print('Failed to added $failCollectionMessage ***************');
       emit(FailAddProductCollection());
     });
+    print('*****');
     file = null;
     titleTextEdController.clear();
     descriptionTextEdController.clear();
@@ -60,6 +63,7 @@ class AddProductCubit extends Cubit<AddProductState> {
     textFormFields.clear();
     sizeList.clear();
     index = 0;
+    print('the end **********');
   }
 
   currentCollection(String selectedCollection) {
