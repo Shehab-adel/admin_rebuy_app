@@ -1,16 +1,37 @@
-# admin_rebuy_app
+# 🛠️ ReBuy Admin Panel - Flutter + Firebase
 
-A new Flutter project.
+This is the **admin panel** for the ReBuy app — a used-products marketplace.  
+The admin app is responsible for managing and moderating user-posted products through a Firebase backend.
 
-## Getting Started
+## 🔗 Connected Projects
 
-This project is a starting point for a Flutter application.
+- 🧑‍💼 **User App**: [ReBuy](https://github.com/Shehab-adel/rebuy)
+- 🛠️ **Admin App (this repo)**: Flutter application to monitor/manage posted items in real-time
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 🔥 Real-time sync with Firebase Firestore
+- ✅ Approve or reject posted products
+- 📋 View product details (title, description, image)
+- 🗑️ Delete inappropriate items
+- 👮 Admin-only interface
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠️ Tech Stack
+
+- **Flutter**
+- **Firebase Firestore**
+- **Firebase Core**
+- **Provider** (for state management)
+- **Image.network** (for rendering product images from Firebase)
+
+## 📸 Screenshots
+
+> (Add screenshots showing product list, approval/rejection UI, etc.)
+
+## 📦 Getting Started
+
+```bash
+git clone https://github.com/Shehab-adel/admin_rebuy_app.git
+cd admin_rebuy_app
+flutter pub get
+flutter run
