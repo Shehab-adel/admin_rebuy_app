@@ -26,7 +26,7 @@ The admin app is responsible for managing and moderating user-posted products th
 
 ## 📸 Screenshots
 
-> (Add screenshots showing product list, approval/rejection UI, etc.)
+https://github.com/Shehab-adel/admin_rebuy_app/tree/master/assets/images
 
 ## 📦 Getting Started
 
